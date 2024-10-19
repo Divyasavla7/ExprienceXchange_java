@@ -1,5 +1,0 @@
-This is the file handling TEST
-Steps:
-Create the Source and Destination Files:
-Update the File Paths in Code:
-Execute the code
