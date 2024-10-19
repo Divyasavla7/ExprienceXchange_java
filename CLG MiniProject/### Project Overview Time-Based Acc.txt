@@ -1,0 +1,139 @@
+### Project Overview: Time-Based Access Passes for Unique Experiences
+
+#### **Project Name**: ExperienceXchange (or any name you prefer)
+
+#### **Objective**:  
+To develop a platform where users can buy, sell, or book **time-based access passes** for unique, non-ticketed experiences such as workshops, guided tours, classes, or personal coaching sessions. The platform will facilitate discovery and booking of local or online experiences with a focus on fair pricing, verified hosts, and a transparent process.
+
+---
+
+### **Features and Pages**:
+
+1. **Landing Page (Home)**:
+   - Showcases featured experiences (e.g., cooking classes, local tours, art workshops).
+   - Search bar for browsing experiences by category, location, or date.
+   - "Find an Experience" and "Host an Experience" buttons.
+
+2. **User Authentication**:
+   - **Login/Signup Pages**: Users and hosts need to create an account. Login using email and password or OAuth (Google, Facebook, etc.).
+   - **User Profiles**: A profile for buyers and hosts where they can manage their booked or hosted experiences.
+
+3. **Dashboard**:
+   - **User Dashboard**: Displays booked experiences, favorite experiences, and upcoming schedules.
+   - **Host Dashboard**: Allows hosts to manage their listed experiences, availability, and bookings. Hosts can also add new experiences.
+   
+4. **Experience Listing Page**:
+   - Hosts can create new listings for experiences by filling in details (e.g., experience type, location, date/time, duration, price).
+   - Upload images or videos to showcase the experience.
+   - Option for virtual or in-person experiences.
+
+5. **Browse and Search Experiences**:
+   - Users can browse available experiences, with filters (e.g., location, type of experience, date).
+   - Search bar with auto-suggest based on popular keywords.
+
+6. **Individual Experience Page**:
+   - A detailed page for each experience showing:
+     - Description of the activity.
+     - Date, time, and duration.
+     - Price per session.
+     - Location (or virtual link if online).
+     - Host profile and reviews.
+     - "Book Now" button to secure a spot.
+
+7. **Booking and Checkout**:
+   - **Booking Page**: Users can select the number of attendees, date, and any customizations offered by the host.
+   - **Checkout Page**: Payment gateway integration for secure payments (Stripe, PayPal, etc.).
+
+8. **Transaction History**:
+   - Shows previous bookings for users and completed sessions for hosts, along with payment details.
+
+9. **Admin Panel**:
+   - Admins can manage platform activities, approve new hosts, monitor experiences, and handle disputes or refund requests.
+
+---
+
+### **Technology Stack**:
+
+1. **Frontend**:  
+   - HTML, CSS, JavaScript (React.js or Vue.js for dynamic interfaces).
+   - Bootstrap or Tailwind CSS for responsive, modern design.
+
+2. **Backend**:  
+   - Node.js/Express.js or Python/Django (or any other backend framework you prefer).
+   - RESTful API to handle user interactions with the database and process requests from the frontend.
+
+3. **Database**:  
+   - **MySQL** for storing user information, experiences, bookings, and payments.
+   - Tables for managing users, experience listings, transactions, and session details.
+
+4. **Payment Integration**:  
+   - Stripe or PayPal for handling payments securely and ensuring both users and hosts can make transactions easily.
+   
+5. **Hosting**:  
+   - Cloud platforms such as AWS, Heroku, or DigitalOcean for deploying the website.
+
+---
+
+### **Database Structure** (Simplified):
+
+#### **Users Table**:
+| Field         | Type         | Description                       |
+|---------------|--------------|-----------------------------------|
+| id            | INT          | Primary key                       |
+| username      | VARCHAR(50)  | Unique username                   |
+| email         | VARCHAR(100) | User email                        |
+| password      | VARCHAR(255) | Hashed password                   |
+| role          | ENUM('user', 'host') | Role of the user            |
+| date_created  | TIMESTAMP    | Account creation date             |
+
+#### **Experiences Table**:
+| Field         | Type         | Description                       |
+|---------------|--------------|-----------------------------------|
+| id            | INT          | Primary key                       |
+| title         | VARCHAR(100) | Experience name                   |
+| description   | TEXT         | Detailed description              |
+| location      | VARCHAR(100) | Location (or "online" if virtual)  |
+| host_id       | INT          | Foreign key referencing Users.id  |
+| price         | DECIMAL(10,2)| Price per session                 |
+| duration      | INT          | Duration in minutes               |
+| date_listed   | TIMESTAMP    | Date experience was listed        |
+
+#### **Bookings Table**:
+| Field         | Type         | Description                       |
+|---------------|--------------|-----------------------------------|
+| id            | INT          | Primary key                       |
+| experience_id | INT          | Foreign key referencing Experiences.id |
+| user_id       | INT          | Foreign key referencing Users.id  |
+| booking_date  | TIMESTAMP    | Date and time of booking          |
+| attendees     | INT          | Number of attendees               |
+| total_amount  | DECIMAL(10,2)| Total amount paid                 |
+
+#### **Transactions Table**:
+| Field         | Type         | Description                       |
+|---------------|--------------|-----------------------------------|
+| id            | INT          | Primary key                       |
+| booking_id    | INT          | Foreign key referencing Bookings.id |
+| payment_status| ENUM('pending', 'completed') | Payment status     |
+| transaction_date | TIMESTAMP | Date of transaction               |
+| amount        | DECIMAL(10,2)| Total price                       |
+
+---
+
+### **Pages and Navigation**:
+
+1. **Homepage**: Featured experiences, search, and categories.
+2. **Search Results**: Displays experiences based on search criteria.
+3. **Experience Details**: Shows details about a specific experience and the booking option.
+4. **Booking and Checkout**: Handles user bookings and payment processing.
+5. **User Profile**: Manage bookings, view history, and manage favorites.
+6. **Host Dashboard**: For hosts to manage their listings and schedule.
+7. **Admin Panel**: For admins to manage site content and monitor activities.
+
+---
+
+### **Timeline**:
+1. **Phase 1**: Set up basic user authentication, experience listing, and browsing.
+2. **Phase 2**: Integrate MySQL database and connect listings with bookings.
+3. **Phase 3**: Payment gateway integration, admin panel, and host management.
+4. **Phase 4**: Additional features like reviews, messaging between users and hosts, and calendar integrations.
+
